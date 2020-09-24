@@ -10,8 +10,8 @@
 .cell {
     width: 1em;
     height: 1em;
-    color: purple;
-    border: 1px solid slateblue;
+    color: black;
+    border: 1px solid slategrey;
     font-size: 10em;
     text-align: center;
 }
