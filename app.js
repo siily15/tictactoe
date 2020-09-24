@@ -1,9 +1,25 @@
-const cellDivs = document.querySelectorAll('.cell')
+let gameboard = [
+    ['_', '_', '_',],
+    ['_', '_', '_',],
+    ['_', '_', '_',]
+]
 
-cellDivs.forEach(el => {
-    el.addEventListener('click', Event => {
-        console.log(Event.currentTarget)
+const cellDivs = document.querySelectorAll('.cell');
+
+cellDivs.forEach(element => {
+    element.addEventListener('click', event => {
+        const selectedCell = event.currentTarget
+        const selectedRow = selectedCell.dataset.row
+        const selectedCol = selectedCell.dataset.col
+
+        selectedCell.innerText = 'X'
+
+        gameboard[selectedRow][selectedCol] = 'x'
+
+        console.log(gameboard)
+
+        console.log(selectedCell.dataset.row)
+        console.log(selectedCell.dataset.col)
     })
 });
-
-console.log(cellDivs[0].dataset.row);
+console.log(cellDivs[0].dataset.row)
