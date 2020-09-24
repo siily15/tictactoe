@@ -12,6 +12,8 @@ cellDivs.forEach(element => {
         const selectedRow = selectedCell.dataset.row
         const selectedCol = selectedCell.dataset.col
 
+        if ( gameboard[selectedRow][selectedCol])
+
         selectedCell.innerText = 'X'
 
         gameboard[selectedRow][selectedCol] = 'x'
