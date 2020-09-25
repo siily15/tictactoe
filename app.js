@@ -14,11 +14,12 @@ cellDivs.forEach(element => {
         const selectedRow = selectedCell.dataset.row
         const selectedCol = selectedCell.dataset.col
 
-        //if (gameboard[selectedRow][selectedCol])
-
         if (gameboard[selectedRow][selectedCol] == '_') {
             selectedCell.innerText = 'x'
             gameboard[selectedRow][selectedCol] = 'x'
+
+            //Horizontal
+
             if (gameboard[0][0] == 'x' && gameboard[0][1] == 'x' && gameboard[0][2] == 'x') {
                 console.log('winner')
             }
@@ -26,6 +27,29 @@ cellDivs.forEach(element => {
                 console.log('winner')
             }
             if (gameboard[2][0] == 'x' && gameboard[2][1] == 'x' && gameboard[2][2] == 'x') {
+                console.log('winner')
+            }
+
+            //Vertigal
+
+            if (gameboard[0][0] == 'x' && gameboard[1][0] == 'x' && gameboard[2][0] == 'x') {
+                console.log('winner')
+            }
+
+            if (gameboard[0][1] == 'x' && gameboard[1][1] == 'x' && gameboard[2][1] == 'x') {
+                console.log('winner')
+            }
+
+            if (gameboard[0][2] == 'x' && gameboard[1][2] == 'x' && gameboard[2][2] == 'x') {
+                console.log('winner')
+            }
+
+            //Diagonal
+
+            if (gameboard[0][0] == 'x' && gameboard[1][1] == 'x' && gameboard[2][2] == 'x') {
+                console.log('winner')
+            }
+            if (gameboard[0][2] == 'x' && gameboard[1][1] == 'x' && gameboard[2][0] == 'x') {
                 console.log('winner')
             }
             console.log(gameboard)
