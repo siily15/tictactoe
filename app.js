@@ -4,6 +4,8 @@ let gameboard = [
     ['_', '_', '_',]
 ]
 
+const winningsSums = [7, 56, 73, 84, 146, 273, 292, 448]
+
 const cellDivs = document.querySelectorAll('.cell');
 
 cellDivs.forEach(element => {
@@ -12,16 +14,21 @@ cellDivs.forEach(element => {
         const selectedRow = selectedCell.dataset.row
         const selectedCol = selectedCell.dataset.col
 
-        if ( gameboard[selectedRow][selectedCol])
+        //if (gameboard[selectedRow][selectedCol])
 
-        selectedCell.innerText = 'X'
-
-        gameboard[selectedRow][selectedCol] = 'x'
-
-        console.log(gameboard)
-
-        console.log(selectedCell.dataset.row)
-        console.log(selectedCell.dataset.col)
+        if (gameboard[selectedRow][selectedCol] == '_') {
+            selectedCell.innerText = 'x'
+            gameboard[selectedRow][selectedCol] = 'x'
+            if (gameboard[0][0] == 'x' && gameboard[0][1] == 'x' && gameboard[0][2] == 'x') {
+                console.log('winner')
+            }
+            if (gameboard[1][0] == 'x' && gameboard[1][1] == 'x' && gameboard[1][2] == 'x') {
+                console.log('winner')
+            }
+            if (gameboard[2][0] == 'x' && gameboard[2][1] == 'x' && gameboard[2][2] == 'x') {
+                console.log('winner')
+            }
+            console.log(gameboard)
+        }
     })
 });
-console.log(cellDivs[0].dataset.row)
