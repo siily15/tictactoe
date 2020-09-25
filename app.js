@@ -1,58 +1,60 @@
-let gameboard = [
-    ['_', '_', '_',],
-    ['_', '_', '_',],
-    ['_', '_', '_',]
+var origBoard;
+const huPlayer = 'O';
+const aiPlayer = 'X';
+const winCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [6, 4, 2]
 ]
 
-const winningsSums = [7, 56, 73, 84, 146, 273, 292, 448]
+const cells = document.querySelectorAll('.cell');
+startGame();
 
-const cellDivs = document.querySelectorAll('.cell');
+function startGame() {
+    document.querySelector(".endgame").style.display = "none";
+    origBoard = Array.from(Array(9).keys());
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].innerText = '';
+        cells[i].style.removeProperty('background-color');
+        cells[i].addEventListener('click', turnClick, false);
+    }
+}
 
-cellDivs.forEach(element => {
-    element.addEventListener('click', event => {
-        const selectedCell = event.currentTarget
-        const selectedRow = selectedCell.dataset.row
-        const selectedCol = selectedCell.dataset.col
+function turnClick(square) {
+    turn(square.target.id, huPlayer)
+}
 
-        if (gameboard[selectedRow][selectedCol] == '_') {
-            selectedCell.innerText = 'x'
-            gameboard[selectedRow][selectedCol] = 'x'
+function turn(squareId, player) {
+    origBoard[squareId] = player;
+    document.getElementById(squareId).innerText = player;
+    let gameWon = checkWin(origBoard, player)
+    if (gameWon) gameOver(gameWon)
+}
 
-            //Horizontal
-
-            if (gameboard[0][0] == 'x' && gameboard[0][1] == 'x' && gameboard[0][2] == 'x') {
-                console.log('winner')
-            }
-            if (gameboard[1][0] == 'x' && gameboard[1][1] == 'x' && gameboard[1][2] == 'x') {
-                console.log('winner')
-            }
-            if (gameboard[2][0] == 'x' && gameboard[2][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
-            }
-
-            //Vertigal
-
-            if (gameboard[0][0] == 'x' && gameboard[1][0] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner')
-            }
-
-            if (gameboard[0][1] == 'x' && gameboard[1][1] == 'x' && gameboard[2][1] == 'x') {
-                console.log('winner')
-            }
-
-            if (gameboard[0][2] == 'x' && gameboard[1][2] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
-            }
-
-            //Diagonal
-
-            if (gameboard[0][0] == 'x' && gameboard[1][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
-            }
-            if (gameboard[0][2] == 'x' && gameboard[1][1] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner')
-            }
-            console.log(gameboard)
+function checkWin(board, player) {
+    let plays = board.reduce((a, e, i) =>
+        (e === player) ? a.concat(i) : a, []);
+    let gameWon = null;
+    for (let [index, win] of winCombos.entries()) {
+        if (win.every(elem => plays.indexOf(elem) > -1)) {
+            gameWon = { index: index, player: player };
+            break;
         }
-    })
-});
+    }
+    return gameWon;
+}
+
+function gameOver(gameWon) {
+    for (let index of winCombos[gameWon.index]) {
+        document.getElementById(index).style.backgroundColor =
+            gameWon.player == huPlayer ? "blue" : "red";
+    }
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].removeEventListener('click', turnClick, false);
+    }
+}
