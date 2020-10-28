@@ -18,9 +18,14 @@ cellDivs.forEach(element => {
             gameboard[selectedRow][selectedCol] = 'x'
             let gameOver = false
 
-             //ai Horizontal
+            //if ( !isGameOver()) {
+            //    //ai move
+            //    EmptyCell = getEmptyCell()
+            //}
 
-             if (gameboard[0][0] == 'x') {
+            //ai Horizontal
+
+            if (gameboard[0][0] == 'x') {
                 document.getElementById('10').innerText = 'o';
             }
             if (gameboard[0][1] == 'x') {
@@ -36,7 +41,7 @@ cellDivs.forEach(element => {
                 document.getElementById('01').innerText = 'o';
             }
             if (gameboard[1][2] == 'x') {
-                document.getElementById('02').innerText = 'o';
+                document.getElementById('02').innerText = 'o'
             }
 
             //ai vertigal
@@ -46,17 +51,17 @@ cellDivs.forEach(element => {
             //Horizontal
 
             if (gameboard[0][0] == 'x' && gameboard[0][1] == 'x' && gameboard[0][2] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
             if (gameboard[1][0] == 'x' && gameboard[1][1] == 'x' && gameboard[1][2] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
             if (gameboard[2][0] == 'x' && gameboard[2][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
@@ -64,19 +69,19 @@ cellDivs.forEach(element => {
             //Vertigal
 
             if (gameboard[0][0] == 'x' && gameboard[1][0] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
 
             if (gameboard[0][1] == 'x' && gameboard[1][1] == 'x' && gameboard[2][1] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
 
             if (gameboard[0][2] == 'x' && gameboard[1][2] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
@@ -84,15 +89,30 @@ cellDivs.forEach(element => {
             //Diagonal
 
             if (gameboard[0][0] == 'x' && gameboard[1][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
             if (gameboard[0][2] == 'x' && gameboard[1][1] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner')
+                console.log('winner player')
             } else {
                 gameOver = true
             }
         }
     })
 });
+
+function GetEmptyCell() {
+    x = Math.floor(Math.random() * 3 )
+    y = Math.floor(Math.random() * 3 )
+    do {
+        x = 0 - 2
+        y = 0 - 2
+    } while (gameboard[x][y]);
+        return[x, y]
+
+}
+
+function IsGameOver() {
+
+}
