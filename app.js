@@ -1,4 +1,4 @@
-//let is gameOver = false
+let isgameOver = false
 let gameboard = [
     ['_', '_', '_',],
     ['_', '_', '_',],
@@ -16,33 +16,28 @@ cellDivs.forEach(element => {
         if (gameboard[selectedRow][selectedCol] == '_') {
             selectedCell.innerText = 'x'
             gameboard[selectedRow][selectedCol] = 'x'
-            let gameOver = false
 
-            //if ( !isGameOver()) {
-            //    //ai move
-            //    EmptyCell = getEmptyCell()
-            //}
 
             //ai Horizontal
 
-            if (gameboard[0][0] == 'x') {
-                document.getElementById('10').innerText = 'o';
-            }
-            if (gameboard[0][1] == 'x') {
-                document.getElementById('11').innerText = 'o';
-            }
-            if (gameboard[0][2] == 'x') {
-                document.getElementById('12').innerText = 'o';
-            }
-            if (gameboard[1][0] == 'x') {
-                document.getElementById('00').innerText = 'o';
-            }
-            if (gameboard[1][1] == 'x') {
-                document.getElementById('01').innerText = 'o';
-            }
-            if (gameboard[1][2] == 'x') {
-                document.getElementById('02').innerText = 'o'
-            }
+            //if (gameboard[0][0] == 'x') {
+            //    document.getElementById('10').innerText = 'o';
+            //}
+            //if (gameboard[0][1] == 'x') {
+            //    document.getElementById('11').innerText = 'o';
+            //}
+            //if (gameboard[0][2] == 'x') {
+            //    document.getElementById('12').innerText = 'o';
+            //}
+            //if (gameboard[1][0] == 'x') {
+            //    document.getElementById('00').innerText = 'o';
+            //}
+            //if (gameboard[1][1] == 'x') {
+            //    document.getElementById('01').innerText = 'o';
+            //}
+            //if (gameboard[1][2] == 'x') {
+            //    document.getElementById('02').innerText = 'o'
+            //}
 
             //ai vertigal
 
@@ -51,17 +46,17 @@ cellDivs.forEach(element => {
             //Horizontal
 
             if (gameboard[0][0] == 'x' && gameboard[0][1] == 'x' && gameboard[0][2] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
-            if (gameboard[1][0] == 'x' && gameboard[1][1] == 'x' && gameboard[1][2] == 'x') {
-                console.log('winner player')
-            } else {
+            if (gameboard[1][0] == 'x' && gameboard[1][1] == 'x' && gameboard[1][2] == 'x'){
+
+            }else {
                 gameOver = true
             }
             if (gameboard[2][0] == 'x' && gameboard[2][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
@@ -69,19 +64,19 @@ cellDivs.forEach(element => {
             //Vertigal
 
             if (gameboard[0][0] == 'x' && gameboard[1][0] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
 
             if (gameboard[0][1] == 'x' && gameboard[1][1] == 'x' && gameboard[2][1] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
 
             if (gameboard[0][2] == 'x' && gameboard[1][2] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
@@ -89,15 +84,16 @@ cellDivs.forEach(element => {
             //Diagonal
 
             if (gameboard[0][0] == 'x' && gameboard[1][1] == 'x' && gameboard[2][2] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
             if (gameboard[0][2] == 'x' && gameboard[1][1] == 'x' && gameboard[2][0] == 'x') {
-                console.log('winner player')
+
             } else {
                 gameOver = true
             }
+            console.log(isGameOver())
         }
     })
 });
@@ -113,6 +109,14 @@ function GetEmptyCell() {
 
 }
 
-function IsGameOver() {
-
+function isGameOver() {
+    for ( let i = 0; i < 3; i++){
+        if ( gameboard[i][0] == gameboard[i][1] && gameboard[i][1] == gameboard[i][2] && gameboard[i][0] != '_') {
+            return true
+        }
+        if ( gameboard[0][i] == gameboard[0][i] && gameboard[0][i] == gameboard[0][i] && gameboard[0][i] != '_') {
+            return true
+        }
+    }
+    return false
 }
